@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas - Manejo de imagenes</title>
+    <style>
+        body{
+            width: 600px;
+            margin: 0 auto;
+        }
+        canvas{
+            background-color: green;
+            border: solid yellow 3px;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            
+            canvas = document.getElementById('canvas');
+
+            if(canvas && canvas.getContext){
+                     
+                ctx = canvas.getContext('2d');
+
+                if(ctx){
+                   var imagen = new Image();
+                   imagen.src = "grito.jpg";
+
+                   imagen.onload = function(e){
+                       procesarImagen();
+                   }
+
+                   function procesarImagen(){
+                       ctx.drawImage(imagen, 10, 10);
+                   }
+                }
+
+                }
+                else{
+                    
+                    alert("No se soporta la etriqueta canvas");
+                }
+            }
+    </script>
+</head>
+<body>
+    <canvas id="canvas" width="600" height="400"/>
+</body>
+</html>
