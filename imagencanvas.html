@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas - Manejo de imagenes</title>
+    <style>
+        body{
+            width: 510px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        canvas{
+            background-color: green;
+            border: solid yellow 3px;
+        }
+    </style>
+    <script>
+        var canvas, ctx, imagen;
+
+        var archivoSelect;
+        
+        window.onload = function(){
+            archivoSelect = document.getElementById("archivo");
+            
+            canvas = document.getElementById('canvas');
+
+            if(canvas && canvas.getContext){
+                     
+                ctx = canvas.getContext('2d');
+
+                if(ctx){
+                   archivoSelect.onchange = function(e){
+                     if(archivoSelect.value!=""){
+                        imagen.src="imagenes/" + archivoSelect.value;
+                        imagen.onload = function(){
+                            procesarImagen();
+                        }
+                     }
+                   }
+                   function procesarImagen(){
+                    limpiar();  
+                    ctx.drawImage(imagen, 10, 10);
+                   }
+                   function limpiar(){
+                    ctx.clearRect(250, 0, imagen.width, imagen.height);
+                   }
+
+                   imagen = new Image();
+                   imagen.src = "grito.jpg";
+                   imagen.onload = function(){
+                        procesarImagen();
+                   }
+                }
+                else{
+                    
+                    alert("No se soporta la etriqueta canvas");
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Proceso de imágenes</h1>
+    <canvas id="canvas" width="500" height="300">
+        Tu navegador no soporta la etiqueta canvas
+    </canvas>
+    Imagen:<select name="" id="archivo">
+        <option value="">--seleccione un archivo</option>
+        <option value="atenea.png">Atenea</option>
+        <option value="afrodita.png">Afrodita</option>
+        <option value="klimt.png">El beso</option>
+        <option value="grito.jpg">El grito</option>
+        <option value="vanGogh.png">Autoretrato</option>
+    </select>
+</body>
+</html>
