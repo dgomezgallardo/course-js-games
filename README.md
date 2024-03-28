@@ -13,4 +13,4 @@
 11. [Rectangulo](rectangulo.html)
 12. [Gradiente](gradiente.html)
 13. [Gradienteradial](gradienteradial.html)
-14. 
+14. [Patrones](patron.html)
