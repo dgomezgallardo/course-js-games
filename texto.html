@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas - Manejo de imagenes</title>
+    <style>
+        body{
+            width: 600px;
+            margin: 0 auto;
+        }
+        canvas{
+            background-color: green;
+            border: solid yellow 3px;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            
+            canvas = document.getElementById('canvas');
+
+            if(canvas && canvas.getContext){
+                     
+                ctx = canvas.getContext('2d');
+
+                if(ctx){
+                   ctx.font="8em Verdana";
+                   ctx.lineWidth = 1.0;
+                   ctx.fillStyle = "blue";
+                   ctx.strokeStyle = "yellow";
+
+                   //sombras
+                   ctx.shadowColor = "black";
+                   ctx.sahdowOffsetX = 5;
+                   ctx.shadowOffsetY = 5;
+                   ctx.shadowBlur = 10;
+
+                   ctx.fillText("CANVAS", 35, 150);
+                   ctx.strokeText("CANVAS", 35, 150);
+                   ctx.fillRect(35, 150, 10, 10);
+                }
+
+                }
+                else{
+                    
+                    alert("No se soporta la etriqueta canvas");
+                }
+            }
+    </script>
+</head>
+<body>
+    <canvas id="canvas" width="600" height="400"/>
+</body>
+</html>

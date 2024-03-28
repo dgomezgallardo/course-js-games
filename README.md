@@ -15,3 +15,4 @@
 13. [Gradienteradial](gradienteradial.html)
 14. [Patrones](patron.html)
 15. [Imagenes](imagen.html)
+16. [Texto](texto.html)
