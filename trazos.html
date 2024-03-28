@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas - Trazos</title>
+    <style>
+        canvas{
+            background-color: rgb(0,221,255);
+            border: solid yellow 3px;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            
+            canvas = document.getElementById('canvas');
+
+            if(canvas && canvas.getContext){
+                
+                ctx = canvas.getContext('2d');
+
+                if(ctx){
+
+                    //estilos
+                    ctx.lineWidth=10;
+                    ctx.strokeStyle="yellow";
+                    ctx.fillStyle = "red";
+
+                    //path (incomplete rhomboid)
+                    ctx.beginPath();
+                    ctx.moveTo(25,100);
+                    ctx.lineTo(75,50);
+                    ctx.lineTo(125,100);
+                    ctx.lineTo(75,150);
+                    ctx.stroke();
+
+                    //path (complete rhomboid")
+                    ctx.strokeStyle="red";
+                    ctx.beginPath();
+                    ctx.moveTo(150,100);
+                    ctx.lineTo(200,50);
+                    ctx.lineTo(250,100);
+                    ctx.lineTo(200,150);
+                    ctx.closePath();
+                    ctx.stroke();
+
+                    //path (square)
+                    ctx.strokeStyle="green";
+                    ctx.beginPath();
+                    ctx.moveTo(275,50);
+                    ctx.lineTo(375,50);
+                    ctx.lineTo(375,150);
+                    ctx.lineTo(275,150);
+                    ctx.fill();
+                    ctx.closePath();
+                    ctx.stroke();
+
+                    //path (triangle)
+                    ctx.strokeStyle="orange";
+                    ctx.beginPath();
+                    ctx.moveTo(400,150);
+                    ctx.lineTo(450,50);
+                    ctx.lineTo(500,150);
+                    ctx.fill();
+                    ctx.closePath();
+                    ctx.stroke();
+
+                }
+                else{
+                    
+                    alert("No se soporta la etriqueta canvas");
+                }
+            }
+
+        }
+        
+    </script>
+</head>
+<body>
+    <canvas id="canvas" width="600" height="400"/>
+</body>
+</html>
