@@ -23,7 +23,7 @@
             bolaY:200,
             colorBola:"red",
             dx:4,
-            dy:4,
+            dy:2,
             limiteDerecha:0,
             limiteIzquierda:0,
             limiteAbajo:0,
@@ -59,7 +59,7 @@
             game.ctx.clearRect(0,0,game.canvas.width, game.canvas.height);
             verificar();
             game.bolaX += game.dx;
-            //game.bolaY += game.dy;
+            game.bolaY += game.dy;
             game.ctx.beginPath();
             game.ctx.arc(game.bolaX, game.bolaY, game.radio, 0, 2*Math.PI, true);
             game.ctx.fill();
@@ -76,6 +76,14 @@
             if(nBolaX < game.limiteIzquierda){
                 game.dx = -game.dx;
                 nbolaX = game.limiteIzquierda;
+            }
+            if(nBolaY > game.limiteAbajo){
+                game.dy = -game.dy;
+                nbolaY = game.limiteAbajo;
+            }
+            if(nBolaY < game.limiteArriba){
+                game.dy = -game.dy;
+                nbolaY = game.limiteArriba;
             }
             game.bolaX = nBolaX;
         }
