@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CANVAS | Rompecabezas</title>
+    <style>
+        body{
+            width: 960px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        canvas{
+            background: green;
+            border: solid yellow 3px;
+        }
+    </style>
+    <script>
+        game = {
+            canvas:null,
+            ctx: null,
+        }
+        window.onload = function(){
+            game.canvas = document.getElementById('canvas');
+            if (game.canvas && game.canvas.getContext){
+                game.ctx = game.canvas.getContext('2d');
+                if (game.ctx){
+
+                }
+                else{
+                    alert("NO cuentaws con CANVAS");
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <H1>Naves espaciales</H1>
+    <canvas id="canvas" width="960" height="500">
+        Tu navegador no soporta el canvas de HTML5
+    </canvas>    
+</body>
+</html>
