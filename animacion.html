@@ -19,10 +19,11 @@
             ctx:null,
             canvas:null,
             radio:10,
-            bolaX:50,
-            bolaY:100,
+            bolaX:300,
+            bolaY:200,
             colorBola:"red",
-            disX:30,
+            dx:4,
+            dy:4,
         }
             
         window.onload = function(){
@@ -33,7 +34,7 @@
                    game.ctx.lineWidth = game.radio;
                    game.ctx.fillStyle = game.colorBola;
                    mueve();
-                   setInterval(mueve, 160);
+                   setInterval(mueve, 60);
                 }
                 else{
                     
@@ -42,7 +43,9 @@
             }
         }
         const mueve=()=>{
-            game.bolaX += game.disX;
+            game.ctx.clearRect(0,0,game.canvas.width, game.canvas.height);
+            game.bolaX += game.dx;
+            game.bolaY += game.dy;
             game.ctx.beginPath();
             game.ctx.arc(game.bolaX, game.bolaY, game.radio, 0, 2*Math.PI, true);
             game.ctx.fill();
