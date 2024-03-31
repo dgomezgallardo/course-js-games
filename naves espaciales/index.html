@@ -27,6 +27,7 @@
             colorBala: "red",
             balas_array: new Array(),
             enemigos_array: new Array(),
+            disparo: false,
         }
         /*********
         CONSTANTS:
@@ -137,6 +138,27 @@
             requestAnimationFrame(animar);
             verificar();
             pintar();
+            colisiones();
+        }
+
+        const colisiones = () => {
+            let enemigo, bala;
+            for(var i = 0; i<game.enemigos_array.length; i++){
+                for(var j = 0; j<game.balas_array.length; j++){
+                    enemigo = game.enemigos_array[i];
+                    bala = game.balas_array[j];
+
+                    if(enemigo != null && bala != null){
+                        if ((bala.x > enemigo.x) && (bala.x < enemigo.x + enemigo.w)
+                            && (bala.y > enemigo.y) && (bala.y < enemigo.y + enemigo.w)){
+                                enemigo.vive = false;
+                                game.enemigos_array[i] = null;
+                                game.balas_array[j] = null;
+                                game.disparo = false;
+                        }
+                    }
+                }
+            }
         }
 
         const verificar = () => {
@@ -169,7 +191,9 @@
         
             //enemigos
             for(var i = 0; i < game.enemigos_array.length; i++){
-                game.enemigos_array[i].dibujar();
+                if(game.enemigos_array[i] != null){
+                    game.enemigos_array[i].dibujar();
+                }
             }
         }
 
