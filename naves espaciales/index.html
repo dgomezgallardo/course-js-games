@@ -68,9 +68,11 @@
         function Jugador(x){
             this.x = x;
             this.y = 450;
+            this.w = 30;
+            this.h = 15;
             this.dibujar = function(x){
                 this.x = x;
-                game.ctx.drawImage(game.imagen, this.x, this.y, 30, 15);
+                game.ctx.drawImage(game.imagen, this.x, this.y, this.w, this.h);
             }
         }
 
@@ -168,6 +170,24 @@
                     }
                 }
             }
+
+            //colision balas enemigas
+            for(var j = 0; j<game.balasEnemigas_array.length; j++){
+                bala = game.balasEnemigas_array[j];
+
+                if(bala != null){
+                    if((bala.x > game.jugador.x)
+                        &&(bala.x < game.jugador.x + game.jugador.w)
+                        &&(bala.y > game.jugador.y)
+                        &&(bala.y < game.jugador.y + game.jugador.h)){
+                        gameOver();
+                    }
+                }
+            }
+        }
+
+        const gameOver = () => {
+            console.log("Termina el juego");
         }
 
         const verificar = () => {
@@ -190,7 +210,7 @@
             }
 
             //disparo Enemigo
-            if(Math.random() > 0.90){
+            if(Math.random() > 0.96){
                 dispararEnemigo();
             }
         }
@@ -198,15 +218,15 @@
         const dispararEnemigo = () => {
             var ultimos = new Array();
             for(var i = game.enemigos_array.length-1; i > 0; i--){
-                if(game.enemigos_array[i]!= null){
-                    ultimos.push(game.enemigos_array[i]);
+                if(game.enemigos_array[i] != null){
+                    ultimos.push(i);
                 }
                 if(ultimos.length == 10) break;
+            }
 
                 d = ultimos[Math.floor(Math.random()*10)];
 
-                game.balasEnemigas_array.push(new Bala(d.x + d.w/2, d.y, 5));
-            }
+                game.balasEnemigas_array.push(new Bala(game.enemigos_array[d].x + game.enemigos_array[d].w / 2, game.enemigos_array[d].y + game.enemigos_array[d].w, 5));
         }
 
         const pintar = () => {

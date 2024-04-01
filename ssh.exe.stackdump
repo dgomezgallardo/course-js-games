@@ -5,7 +5,7 @@ r8 =0000000000000000 r9 =0000000000000000 r10=0000000000000000
 r11=0000000000000000 r12=000000080009D620 r13=00000001004AC7C0
 r14=000000080009D620 r15=00000001004B71A9
 rbp=00000008000B19E0 rsp=00000000FFFFACF0
-program=C:\Users\danie\AppData\Local\gitkraken\app-9.13.0\resources\app.asar.unpacked\git\usr\bin\ssh.exe, pid 512, thread main
+program=C:\Users\danie\AppData\Local\gitkraken\app-9.13.0\resources\app.asar.unpacked\git\usr\bin\ssh.exe, pid 1338, thread main
 cs=0033 ds=002B es=002B fs=0053 gs=002B ss=002B
 Stack trace:
 Frame        Function    Args
