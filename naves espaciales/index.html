@@ -25,7 +25,9 @@
             teclaPulsada: null,
             tecla: [],
             colorBala: "red",
+            colorBalaEnemigo: "yellow",
             balas_array: new Array(),
+            balasEnemigas_array: new Array(),
             enemigos_array: new Array(),
             disparo: false,
         }
@@ -52,6 +54,13 @@
                 game.ctx.fillStyle = game.colorBala;
                 game.ctx.fillRect(this.x, this.y, this.w, this.w);
                 this.y = this.y - 4;
+                game.ctx.restore();
+            }
+            this.disparar = function(){
+                game.ctx.save();
+                game.ctx.fillStyle = game.colorBalaEnemigo;
+                game.ctx.fillRect(this.x, this.y, this.w, this.w);
+                this.y = this.y + 6;
                 game.ctx.restore();
             }
         }
@@ -179,6 +188,25 @@
                     game.disparo = true;
                 }
             }
+
+            //disparo Enemigo
+            if(Math.random() > 0.90){
+                dispararEnemigo();
+            }
+        }
+
+        const dispararEnemigo = () => {
+            var ultimos = new Array();
+            for(var i = game.enemigos_array.length-1; i > 0; i--){
+                if(game.enemigos_array[i]!= null){
+                    ultimos.push(game.enemigos_array[i]);
+                }
+                if(ultimos.length == 10) break;
+
+                d = ultimos[Math.floor(Math.random()*10)];
+
+                game.balasEnemigas_array.push(new Bala(d.x + d.w/2, d.y, 5));
+            }
         }
 
         const pintar = () => {
@@ -200,6 +228,16 @@
             for(var i = 0; i < game.enemigos_array.length; i++){
                 if(game.enemigos_array[i] != null){
                     game.enemigos_array[i].dibujar();
+                }
+            }
+
+            //Balas Enemigas
+            for( var i = 0; i < game.balasEnemigas_array.length; i++){
+                if(game.balasEnemigas_array[i] != null){
+                    game.balasEnemigas_array[i].disparar();
+                    if(game.balasEnemigas_array[i].y > game.canvas.height){
+                        game.balasEnemigas_array[i] = null;
+                    }
                 }
             }
         }
