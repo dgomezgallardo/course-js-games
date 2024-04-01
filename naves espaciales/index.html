@@ -172,8 +172,12 @@
 
             //disparo
             if(game.tecla[BARRA]){
-                game.balas_array.push(new Bala(game.jugador.x + 12, game.jugador.y - 3, 5));
-                game.tecla[BARRA] = false;
+                
+                if(game.disparo == false){
+                    game.balas_array.push(new Bala(game.jugador.x + 12, game.jugador.y - 3, 5));
+                    game.tecla[BARRA] = false;
+                    game.disparo = true;
+                }
             }
         }
 
@@ -185,7 +189,10 @@
             for(var i = 0; i < game.balas_array.length; i++) {
                 if(game.balas_array[i]!=null){
                     game.balas_array[i].dibujar();
-                    if(game.balas_array[i].y < 0) game.balas_array[i] = null;
+                    if(game.balas_array[i].y < 0){
+                        game.disparo = false;
+                        game.balas_array[i] = null;
+                    }
                 } 
             }
         
