@@ -31,6 +31,7 @@
             enemigos_array: new Array(),
             disparo: false,
             puntos: 0,
+            finJuego: false,
         }
         /*********
         CONSTANTS:
@@ -119,6 +120,7 @@
         /*********
         FUNCTIONS:
         *********/
+        var x=100, y=100;
 
         const caratula = () => {
             let imagen = new Image();
@@ -143,14 +145,13 @@
             animar();
         }
 
-
-
-        var x=100, y=100;
         const animar = () => {
-            requestAnimationFrame(animar);
-            verificar();
-            pintar();
-            colisiones();
+            if(!game.finJuego){
+                requestAnimationFrame(animar);
+                verificar();
+                pintar();
+                colisiones();
+            }
         }
 
         const colisiones = () => {
@@ -189,7 +190,33 @@
         }
 
         const gameOver = () => {
-            console.log("Termina el juego");
+            game.ctx.clearRect(0, 0, game.canvas.width, game.canvas.height);
+            game.balas_array = [];
+            game.enemigo_array = [];
+            game.balasEnemigas_array = []
+            game.finJuego = true;
+            mensaje("Game   Over", 100, 60);
+            mensaje("Lograste "+game.puntos+" puntos",220);
+
+            if(game.puntos > 100 && game.puntos<=200){
+                mensaje("Casi lo logras",340);
+            }else if(game.puntos > 200){
+                mensaje("Enhorabuena",340);
+            }else{
+                mensaje("Lo sentimos",340);
+            }
+        }
+
+        const mensaje = (cadena, y, tamano=40) => {
+            let medio = game.canvas.width / 2;
+            game.ctx.save();
+            game.ctx.fillStyle = "green";
+            game.ctx.strokeStyle = "blue";
+            game.ctx.textBaseline = "top";
+            game.ctx.font = "bold" + tamano + "px Courier";
+            game.ctx.textAlign = "center";
+            game.ctx.fillText(cadena, medio, y);
+            game.ctx.restore();
         }
 
         const verificar = () => {
